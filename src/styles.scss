@@ -1,1 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+// @import '../node_modules/bootstrap/dist/css/bootstrap.css';
+@import url("../node_modules/bulma/bulma.scss");
+@import url("./app/main-styles.scss");
+
+

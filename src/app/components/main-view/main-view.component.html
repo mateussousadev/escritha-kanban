@@ -1,0 +1,41 @@
+<div class="root">
+  <div class="navbar has-background-dark">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <h1 class="app-name has-grandient-text">Escritha Kanban</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="board">
+    <div class="board-bar">
+      <p class="board-name">Board Name</p>
+    </div>
+
+    <div class="board-wrapper">
+      <div class="board-columns">
+        <div
+          class="board-column"
+          cdkDropList
+          #todoList="cdkDropList"
+          [cdkDropListData]="todo"
+          [cdkDropListConnectedTo]="[doneList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+
+          <div class="column-title" >A fazer</div>
+
+          <div class="tasks-container">
+            <div class="task" cdkDrag>Tem que fazer aquilo lá tal hora tal lugar</div>
+            <div class="task">Tem que fazer aquilo lá tal hora tal lugar</div>
+            <div class="task">Tem que fazer aquilo lá tal hora tal lugar</div>
+            <div class="task">Tem que fazer aquilo lá tal hora tal lugar</div>
+          </div>
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
