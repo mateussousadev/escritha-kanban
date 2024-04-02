@@ -14,27 +14,43 @@
 
     <div class="board-wrapper">
       <div class="board-columns">
-        <div
-          class="board-column"
-          cdkDropList
-          #todoList="cdkDropList"
-          [cdkDropListData]="todo"
-          [cdkDropListConnectedTo]="[doneList]"
-          class="example-list"
-          (cdkDropListDropped)="drop($event)"
-        >
+        <div class="board-column">
+          <div class="column-title">A fazer</div>
 
-          <div class="column-title" >A fazer</div>
-
-          <div class="tasks-container">
-            <div class="task" cdkDrag>Tem que fazer aquilo lá tal hora tal lugar</div>
-            <div class="task">Tem que fazer aquilo lá tal hora tal lugar</div>
-            <div class="task">Tem que fazer aquilo lá tal hora tal lugar</div>
-            <div class="task">Tem que fazer aquilo lá tal hora tal lugar</div>
+          <div
+            class="tasks-container"
+            cdkDropList
+            #todoList="cdkDropList"
+            [cdkDropListData]="todo"
+            [cdkDropListConnectedTo]="[doneList]"            
+            (cdkDropListDropped)="drop($event)"
+          >
+            @for (item of todo; track item) {
+            <div class="task" cdkDrag>
+              {{ item }}
+            </div>
+            }
           </div>
         </div>
 
-        
+        <div class="board-column">
+          <div class="column-title">Feito</div>
+
+          <div
+            class="tasks-container"
+            cdkDropList
+            #doneList="cdkDropList"
+            [cdkDropListData]="done"
+            [cdkDropListConnectedTo]="[todoList]"
+            (cdkDropListDropped)="drop($event)"
+          >
+            @for (item of done; track item) {
+            <div class="task" cdkDrag>
+              {{ item }}
+            </div>
+            }
+          </div>
+        </div>
       </div>
     </div>
   </div>

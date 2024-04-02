@@ -25,7 +25,7 @@ import {
     CommonModule,
     BrowserModule,
     DragDropModule,
-    CdkDropList,
+
   ]
 })
 export class AppModule { }

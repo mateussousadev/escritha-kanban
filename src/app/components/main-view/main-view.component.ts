@@ -11,7 +11,7 @@ import {
 @Component({
   selector: 'app-main-view',
   standalone: true,
-  imports: [],
+  imports: [CdkDropList, CdkDrag],
   templateUrl: './main-view.component.html',
   styleUrl: './main-view.component.scss'
 })
