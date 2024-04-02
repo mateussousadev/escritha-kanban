@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { MainViewComponent } from './components/main-view/main-view.component';
 
 import { CommonModule } from '@angular/common';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DragDropModule, } from '@angular/cdk/drag-drop';
 
 import {
   CdkDragDrop,

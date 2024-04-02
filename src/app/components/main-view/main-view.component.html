@@ -9,48 +9,28 @@
 
   <div class="board">
     <div class="board-bar">
-      <p class="board-name">Board Name</p>
+      <p class="board-name">{{board.name}}</p>
     </div>
 
     <div class="board-wrapper">
-      <div class="board-columns">
-        <div class="board-column">
-          <div class="column-title">A fazer</div>
 
-          <div
-            class="tasks-container"
-            cdkDropList
-            #todoList="cdkDropList"
-            [cdkDropListData]="todo"
-            [cdkDropListConnectedTo]="[doneList]"            
-            (cdkDropListDropped)="drop($event)"
-          >
-            @for (item of todo; track item) {
-            <div class="task" cdkDrag>
+      <div class="board-columns" cdkDropListGroup>
+        <div class="board-column" *ngFor="let column of board.columns">
+
+          <div class="column-title">
+            {{ column.name }}
+          </div>
+
+          <div class="tasks-container"
+          cdkDropList
+          [cdkDropListData]="column.tasks"
+          (cdkDropListDropped)="drop($event)">
+            <div class="task" *ngFor="let item of column.tasks" cdkDrag>
               {{ item }}
             </div>
-            }
           </div>
         </div>
 
-        <div class="board-column">
-          <div class="column-title">Feito</div>
-
-          <div
-            class="tasks-container"
-            cdkDropList
-            #doneList="cdkDropList"
-            [cdkDropListData]="done"
-            [cdkDropListConnectedTo]="[todoList]"
-            (cdkDropListDropped)="drop($event)"
-          >
-            @for (item of done; track item) {
-            <div class="task" cdkDrag>
-              {{ item }}
-            </div>
-            }
-          </div>
-        </div>
       </div>
     </div>
   </div>
