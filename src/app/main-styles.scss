@@ -9,7 +9,8 @@ $input-shadow:none;
 html , body{
     height: 100%;
 }
-html{
+
+body{
     background-image: url(../assets/bg.svg)!important;
     background-size: cover!important;
     overflow-y: auto!important;

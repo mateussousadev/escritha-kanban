@@ -15,22 +15,35 @@
     <div class="board-wrapper">
 
       <div class="board-columns" cdkDropListGroup>
-        <div class="board-column" *ngFor="let column of board.columns">
-
+        <div class="board-column" *ngFor="let column of board.columns; let i = index">
           <div class="column-title">
             {{ column.name }}
           </div>
 
-          <div class="tasks-container"
-          cdkDropList
-          [cdkDropListData]="column.tasks"
-          (cdkDropListDropped)="drop($event)">
+          <div class="tasks-container" cdkDropList [id]="'column-' + i"
+            [cdkDropListConnectedTo]="getConnectedColumns(i)" [cdkDropListData]="column.tasks"
+            (cdkDropListDropped)="drop($event)">
             <div class="task" *ngFor="let item of column.tasks" cdkDrag>
-              {{ item }}
+              {{ item.name }}
+            </div>
+            <button (click)="openModal(i)">Adicionar Tarefa</button>
+          </div>
+          <div class="modal" [ngClass]="{'show': modalOpen}">
+            <div class="modal-content">
+              <span class="close ml-auto" (click)="closeModal()">&times;</span>
+              <form (submit)="addTask($event, currentColumnIndex!, taskName.value); taskName.value = ''">
+                <div class="input-container">
+
+                  <input class="input-field" #taskName type="text" placeholder="Nome da Tarefa">
+                  <label for="input-field" class="input-label">Nome da Tarefa</label>
+                  <span class="input-highlight"></span>
+                </div>
+                <button class="input-button mx-auto btn" type="submit">Adicionar</button>
+                
+              </form>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>

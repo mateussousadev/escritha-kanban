@@ -56,6 +56,8 @@
         flex-basis: 0px;
 
         min-width: 300px;
+        max-height: auto; /* Permite que a coluna cresça conforme necessário */
+        overflow-y: auto;
         margin: 50px;
         padding: 25px;
         border-radius: 12px;
@@ -90,15 +92,14 @@
   margin-bottom: 15px;
   color: rgba($color: #0d0d0d, $alpha: 0.6);
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.05),
-  0 3px 13px 2px rgba(0,0,0,0.05)
+    0 3px 13px 2px rgba(0, 0, 0, 0.05);
 }
 
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-              0 8px 10px 1px rgba(0, 0, 0, 0.14),
-              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
 .cdk-drag-placeholder {
@@ -115,4 +116,104 @@
 
 .tasks-container.cdk-drop-list-dragging .task:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.modal {
+  display: none; /* Oculta o modal por padrão */
+  position: fixed; /* Mantém o modal na posição fixa na tela */
+  z-index: 1; /* Mantém o modal acima de outros elementos */
+  left: 0;
+  top: 0;
+  width: 100%; /* Largura total */
+  height: 100%; /* Altura total */
+  overflow: auto; /* Permite rolagem se necessário */
+  background-color: rgba(0, 0, 0, 0.4); /* Fundo escuro com transparência */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* Centraliza o modal na tela */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 20%; /* Largura do modal */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  button{
+    background-color: #BF1736!important;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    color:#fff;
+  }
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.show {
+  display: block; /* Mostra o modal quando a classe 'show' é adicionada */
+}
+
+/* Input container */
+.input-container {
+  position: relative;
+  margin: 20px;
+}
+
+/* Input field */
+.input-field {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  background-color: transparent;
+}
+
+/* Input label */
+.input-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 16px;
+  color: rgba(204, 204, 204, 0);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* Input highlight */
+.input-highlight {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: #BF1736;
+  transition: all 0.3s ease;
+}
+
+/* Input field:focus styles */
+.input-field:focus + .input-label {
+  top: -20px;
+  font-size: 12px;
+  color: #BF1736;
+}
+
+.input-field:focus + .input-label + .input-highlight {
+  width: 100%;
 }

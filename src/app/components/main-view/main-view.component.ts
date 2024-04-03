@@ -3,6 +3,8 @@ import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem }
 import { Board } from '../../models/board.model';
 import { Column } from '../../models/column.model';
 import { CommonModule } from '@angular/common';
+import { Task } from "../../models/task-model";
+  
 
 @Component({
   selector: 'app-main-view',
@@ -15,44 +17,49 @@ export class MainViewComponent implements OnInit {
 
   constructor() { }
 
-  board: Board = new Board('Test Board', [
-    new Column('Ideas', [
-      "Some random idea",
-      "This is another random idea",
-      "build an awesome application"
-    ]),
-    new Column('Research', [
-      "Lorem ipsum",
-      "foo",
-      "This was in the 'Research' column"
-    ]),
-    new Column('Todo', [
-      'Get to work',
-      'Pick up groceries',
-      'Go home',
-      'Fall asleep'
-    ]),
-    new Column('Done', [
-      'Get up',
-      'Brush teeth',
-      'Take a shower',
-      'Check e-mail',
-      'Walk dog'
-    ])
-  ]);
+  board = new Board('Meu Quadro', [
+    new Column('To Do', [new Task('Banhar cachorro')]),
+    new Column('In Progress', []),
+    new Column('Done', [])
+ ]);
+  
 
   ngOnInit() {
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+        moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      transferArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex);
+        transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
     }
+}
+
+getConnectedColumns(index: number): string[] {
+    // Retorna todos os IDs de colunas, exceto o próprio ID da coluna atual
+    return this.board.columns.map((_, i) => 'column-' + i).filter(id => id !== 'column-' + index);
+
+}
+modalOpen = false;
+currentColumnIndex: number | null = null; // Inicializa como null
+
+openModal(index: number) {
+   this.currentColumnIndex = index;
+   this.modalOpen = true;
+  }
+
+ closeModal() {
+    this.modalOpen = false;
+ }
+
+ addTask(event: Event, columnIndex: number, taskName: string) {
+   event.preventDefault(); // Previne a atualização da página
+   const newTask = new Task(taskName);
+   this.board.columns[columnIndex].tasks.push(newTask);
+   this.closeModal(); // Fecha o modal após adicionar a tarefa
   }
 
 

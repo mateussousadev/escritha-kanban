@@ -6,6 +6,12 @@ import { MainViewComponent } from './components/main-view/main-view.component';
 
 import { CommonModule } from '@angular/common';
 import { DragDropModule, } from '@angular/cdk/drag-drop';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+
 
 import {
   CdkDragDrop,
@@ -25,6 +31,12 @@ import {
     CommonModule,
     BrowserModule,
     DragDropModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDialogModule,
+    FormsModule,
 
   ]
 })
