@@ -1,0 +1,28 @@
+<div class="modal" [ngClass]="{'show': modalOpen}">
+    <div class="modal-content">
+      <span class="close ml-auto" (click)="closeModal()">&times;</span>
+      <form (submit)="addTask($event, currentColumnIndex!, taskTitle.value,taskDescription.value,taskResponsible.value); taskTitle.value = ''; taskDescription.value = '' ;taskResponsible.value = ''">
+        <div class="input-container">
+          <div class="input-field-title">
+            <input class="input-field" #taskTitle type="text" placeholder="Titulo" required>
+            <label for="input-field" class="input-label">Titulo da Tarefa</label>
+            <span class="input-highlight"></span>
+          </div>
+  
+          <div class="input-field-description">
+            <input class="input-field" #taskDescription type="text" placeholder="Descrição" required>
+            <label for="input-field" class="input-label">Descrição da Tarefa</label>
+            <span class="input-highlight"></span>
+          </div>
+  
+          <div class="input-field-responsible">
+            <input class="input-field" #taskResponsible type="text" placeholder="Responsável" required>
+            <label for="input-field" class="input-label">Responsável da Tarefa</label>
+            <span class="input-highlight"></span>
+          </div>
+        </div>
+        <button class="input-button mx-auto btn" type="submit">Adicionar</button>
+        
+      </form>
+    </div>
+  </div>

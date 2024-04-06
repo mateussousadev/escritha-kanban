@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MainViewComponent } from './components/main-view/main-view.component';
+import { ModalAddColumnComponent } from './modal-add-column/modal-add-column.component';
+import { ModalAddTaskComponent } from './modal-add-task/modal-add-task.component';
 
 import { CommonModule } from '@angular/common';
 import { DragDropModule, } from '@angular/cdk/drag-drop';
@@ -37,7 +39,13 @@ import {
     MatButtonModule,
     MatDialogModule,
     FormsModule,
+    ModalAddColumnComponent,
+    ModalAddTaskComponent,
 
+  ],
+  exports:[
+    ModalAddTaskComponent,
+    ModalAddColumnComponent,
   ]
 })
 export class AppModule { }

@@ -24,27 +24,54 @@
             [cdkDropListConnectedTo]="getConnectedColumns(i)" [cdkDropListData]="column.tasks"
             (cdkDropListDropped)="drop($event)">
             <div class="task" *ngFor="let item of column.tasks" cdkDrag>
-              {{ item.name }}
-            </div>
-            <button (click)="openModal(i)">Adicionar Tarefa</button>
-          </div>
-          <div class="modal" [ngClass]="{'show': modalOpen}">
-            <div class="modal-content">
-              <span class="close ml-auto" (click)="closeModal()">&times;</span>
-              <form (submit)="addTask($event, currentColumnIndex!, taskName.value); taskName.value = ''">
-                <div class="input-container">
+              <span class="task-label">
+                Tarefa
+              </span>
+              {{ item.title }}
 
-                  <input class="input-field" #taskName type="text" placeholder="Nome da Tarefa">
-                  <label for="input-field" class="input-label">Nome da Tarefa</label>
-                  <span class="input-highlight"></span>
-                </div>
-                <button class="input-button mx-auto btn" type="submit">Adicionar</button>
-                
-              </form>
+              <span class="task-label">
+                Descrição
+              </span>
+              {{item.description}}
+              <span class="task-label">
+                Responsável
+              </span>
+              {{item.responsible}}
             </div>
+            <button (click)="addTask()" class="btn"><i class="fa-solid fa-circle-plus"></i></button>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+
+<div class="modal" [ngClass]="{'show': modalOpen}">
+  <div class="modal-content">
+    <span class="close ml-auto" (click)="closeModal()">&times;</span>
+    <form (submit)="addTask($event, currentColumnIndex!, taskTitle.value,taskDescription.value,taskResponsible.value); taskTitle.value = ''; taskDescription.value = '' ;taskResponsible.value = ''">
+      <div class="input-container">
+        <div class="input-field-title">
+          <input class="input-field" #taskTitle type="text" placeholder="Titulo" required>
+          <label for="input-field" class="input-label">Titulo da Tarefa</label>
+          <span class="input-highlight"></span>
+        </div>
+
+        <div class="input-field-description">
+          <input class="input-field" #taskDescription type="text" placeholder="Descrição" required>
+          <label for="input-field" class="input-label">Descrição da Tarefa</label>
+          <span class="input-highlight"></span>
+        </div>
+
+        <div class="input-field-responsible">
+          <input class="input-field" #taskResponsible type="text" placeholder="Responsável" required>
+          <label for="input-field" class="input-label">Responsável da Tarefa</label>
+          <span class="input-highlight"></span>
+        </div>
+      </div>
+      <button class="input-button mx-auto btn" type="submit">Adicionar</button>
+      
+    </form>
   </div>
 </div>

@@ -83,8 +83,19 @@
   flex-grow: 1;
 }
 
+
+.tasks-container .btn {
+  display: flex;
+  margin: 0px auto;
+  color: #ddd;
+  font-weight: bold;
+  border-radius: 50px;
+  background-color: #bf1736!important;
+}
+
 .task {
   display: flex;
+  flex-direction: column;
   padding: 15px 12px;
   background: white;
   border-bottom: solid 1px #ddd;
@@ -93,6 +104,10 @@
   color: rgba($color: #0d0d0d, $alpha: 0.6);
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.05),
     0 3px 13px 2px rgba(0, 0, 0, 0.05);
+    .task-label{
+      font-size: larger;
+      font-weight: bold;
+    }
 }
 
 .cdk-drag-preview {
@@ -174,10 +189,12 @@
 }
 
 /* Input field */
+.input-field-title,.input-field-description,.input-field-responsible{position: relative;}
 .input-field {
   display: block;
   width: 100%;
-  padding: 10px;
+  padding: 10px ;
+  margin-top: 22px;
   font-size: 16px;
   border: none;
   border-bottom: 2px solid #ccc;

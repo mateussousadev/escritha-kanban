@@ -17,12 +17,11 @@ export class MainViewComponent implements OnInit {
 
   constructor() { }
 
-  board = new Board('Meu Quadro', [
-    new Column('To Do', [new Task('Banhar cachorro')]),
+  board = new Board('Desenvolvimento', [
+    new Column('To Do', [new Task('Mover botão','O botão deve ser movido para lá','Mateusito')]),
     new Column('In Progress', []),
     new Column('Done', [])
  ]);
-  
 
   ngOnInit() {
   }
@@ -55,12 +54,14 @@ openModal(index: number) {
     this.modalOpen = false;
  }
 
- addTask(event: Event, columnIndex: number, taskName: string) {
+ addTask(event: Event, columnIndex: number, taskTitle: string, taskDescription: string, taskResponsible: string) {
    event.preventDefault(); // Previne a atualização da página
-   const newTask = new Task(taskName);
+   const newTask = new Task(taskTitle, taskDescription, taskResponsible);
    this.board.columns[columnIndex].tasks.push(newTask);
    this.closeModal(); // Fecha o modal após adicionar a tarefa
   }
+
+  
 
 
 }
